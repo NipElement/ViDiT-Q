@@ -57,7 +57,7 @@ def get_quant_calib_data(config, sample_data, custom_steps=None, model_type='ope
     cond_embs = torch.cat(cond_emb_lst, dim=0)
     masks = torch.cat(mask_lst, dim=0)
 
-    if model_type == 'opensora' or model_type == 'pixart':
+    if model_type == 'opensora' or model_type == 'pixart' or model_type == 'allegro':
         return xs, ts, cond_embs, masks
     else:
         raise NotImplementedError

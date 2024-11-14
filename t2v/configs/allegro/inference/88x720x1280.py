@@ -1,6 +1,6 @@
 num_frames = 88
 fps = 15
-image_size = (1280, 720)
+image_size = (720, 1280)
 
 # Define model
 model = dict(
@@ -9,7 +9,7 @@ model = dict(
     time_scale=1.0,
     enable_flashattn=False,
     enable_layernorm_kernel=False,
-    from_pretrained="PRETRAINED_MODEL",
+    from_pretrained="/data/yuansheng/model/DiT-Allegro/Allegro-v1-split-qkv.pth",
 )
 vae = dict(
     type="AllegroAutoencoderKL3D",

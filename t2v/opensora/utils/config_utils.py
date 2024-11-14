@@ -200,6 +200,7 @@ def merge_args(cfg, args, training=False, mode=None):
         default_prompt_path = {
                 "opensora": "./t2v/assets/texts/t2v_samples.txt",
                 "ucf": "./assets/texts/prompt_ucf.txt",
+                "allegro": "./assets/texts/t2v_samples_simple_allegro.txt",
                 }
 
         # assign default prompt path

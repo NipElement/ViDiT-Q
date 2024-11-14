@@ -1,0 +1,56 @@
+part_fp_list: "./t2v/configs/quant/allegro/remain_fp.txt"
+smooth_quant_list: ""
+model:
+    model_id: "allegro"
+    model_type: 'allegro'
+conditional: True
+cfg_split: False
+mixed_precision: [4,6,8]
+calib_data:
+    path: "/home/yuansheng/TIGER-Lab/DiT/outputs/calib_data/calib_data.pt"
+    n_steps: 25
+    batch_size: 1
+    n_samples: 3
+quant:
+    weight:
+        quantizer:
+            n_bits: 8
+            channel_wise: True
+            per_group: "channel"
+            channel_dim: 0
+            scale_method: 'min_max'
+            round_mode: 'nearest'
+    activation:
+        quantizer:
+            n_bits: 8
+            per_group: False
+            scale_method: 'min_max'
+            round_mode: 'nearest_ste'
+            running_stat: False
+            dynamic: False
+            sym: False
+            n_spatial_token: 921600  # for 88x720x1280
+            n_temporal_token: 88
+            n_prompt: 512
+            smooth_quant:
+                enable: False
+                channel_wise_scale_type: momentum_act_max
+                momentum: 0.95
+                alpha: 0.6250
+
+    grad_checkpoint: False
+resume_with_w_quantized:
+    path: None
+
+skip_modules:
+    - "vae"
+    - "text_encoder"
+    - "tokenizer"
+
+model_arch:
+    name: "allegro"
+    input_size: [88, 720, 1280]
+    dtype: "bfloat16"
+    device: "cuda"
+    guidance_scale: 7.5
+    num_sampling_steps: 25
